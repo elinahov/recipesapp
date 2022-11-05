@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "recipes-app",
-    "slug": "recipes-app",
+    "name": "Recipes",
+    "slug": "recipes-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appIcon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
