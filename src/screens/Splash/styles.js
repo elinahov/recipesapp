@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 15,
-        paddingVertical: 40,
+        paddingVertical: 60,
     },
     logo: {
         width: 80,
