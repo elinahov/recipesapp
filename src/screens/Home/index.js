@@ -11,6 +11,7 @@ import styles from "./styles";
 const Home = ({ navigation }) => {
     const [tags, setTags] = useState([])
     const [selectedTag, setSelectedTag] = useState()
+    const [filteredRecipes, setFilteredRecipes] = useState(recipes)
     const { healthyRecipes } = useContext(HealthyRecipesContext);
     const { recipes } = useContext(RecipesContext);
 
@@ -28,6 +29,18 @@ const Home = ({ navigation }) => {
         setTags(tagsList)
     }, [recipes])
 
+    useEffect(() => {
+        if (selectedTag) {
+            const filteredItems = recipes?.filter(rec => {
+                const tag = rec?.tags?.find(t => t?.name === selectedTag);
+                return !!tag
+            })
+            setFilteredRecipes(filteredItems)
+        } else {
+            setFilteredRecipes(recipes)
+        }
+    }, [selectedTag, recipes])
+
     return (
         <SafeAreaView style={styles.container}>
             <Input pressable onPress={() => navigation.navigate('Search')} />
@@ -43,6 +56,7 @@ const Home = ({ navigation }) => {
                 renderItem={({ item, index }) => (
                     <RecipeCard
                         style={index === 0 ? { marginLeft: 24 } : {}}
+                        onPress={() => navigation.navigate('RecipeDetails', { item })}
                         title={item?.name}
                         time={item?.cook_time_minutes}
                         image={item?.thumbnail_url}
@@ -60,13 +74,14 @@ const Home = ({ navigation }) => {
 
             <FlatList
                 horizontal
-                data={recipes}
+                data={filteredRecipes}
                 style={{ marginHorizontal: -24 }}
                 keyExtractor={item => String(item?.id)}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item, index }) => (
                     <Card
                         style={index === 0 ? { marginLeft: 24 } : {}}
+                        onPress={() => navigation.navigate('RecipeDetails', { item })}
                         title={item?.name}
                         servings={item?.num_servings}
                         image={item?.thumbnail_url}

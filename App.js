@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './src/screens/Home';
 import Search from './src/screens/Search';
 import { getRecipesList } from './src/http';
+import RecipeDetails from './src/screens/RecipeDetails';
 
 const Stack = createStackNavigator();
 export const RecipesContext = React.createContext();
@@ -58,6 +59,7 @@ export default function App() {
             <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
             <Stack.Screen name="Home" component={Home} options={{ headerLeft: null, gestureEnabled: false }} />
             <Stack.Screen name="Search" component={Search} options={{ headerLeft: (props) => <BackButton {...props} /> }} />
+            <Stack.Screen name="RecipeDetails" component={RecipeDetails} options={{ headerLeft: (props) => <BackButton {...props} />, title: '' }} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecipesContext.Provider>
