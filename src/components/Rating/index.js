@@ -14,12 +14,12 @@ const Rating = ({ rating }) => {
         return arr?.map(star => {
             if (Math.round(rating) >= star) {
                 return (
-                    <Image style={styles.star} source={require('../../../assets/star.png')} />
+                    <Image key={star} style={styles.star} source={require('../../../assets/star.png')} />
                 )
             }
 
             return (
-                <Image style={styles.star} source={require('../../../assets/starEmpty.png')} />
+                <Image key={star} style={styles.star} source={require('../../../assets/starEmpty.png')} />
             )
         })
     }
